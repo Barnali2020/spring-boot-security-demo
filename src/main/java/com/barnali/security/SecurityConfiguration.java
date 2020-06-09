@@ -28,9 +28,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/admin").hasRole("ADMIN")				//this url is accessible only to ADMIN
-			.antMatchers("/user").hasRole("USER")				//this url is accessible only to USER
-			.antMatchers("/").permitAll()						//this url is accessible to all
+			.antMatchers("/admin").hasRole("ADMIN")							//this url is accessible only to ADMIN
+			.antMatchers("/user").hasAnyRole("USER", "ADMIN")				//this url is accessible only to USER and ADMIN
+			.antMatchers("/").permitAll()									//this url is accessible to all
 			.and().formLogin();
 	}
 	
